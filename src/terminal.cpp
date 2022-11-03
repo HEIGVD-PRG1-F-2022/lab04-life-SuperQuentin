@@ -35,9 +35,9 @@ char getKeyPressDown() {
 
 void clearTerminal() {
 #ifdef _WIN32
-    system("clear");
-#elif __unix__
     system("cls");
+#elif __unix__
+    system("clear");
 #endif
 }
 
