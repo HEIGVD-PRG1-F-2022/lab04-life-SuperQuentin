@@ -3,4 +3,8 @@ project(Life)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Life main.cpp)
+file(GLOB SOURCES include/*.h src/*.cpp)
+add_executable(Life ${SOURCES})
+
+
+
