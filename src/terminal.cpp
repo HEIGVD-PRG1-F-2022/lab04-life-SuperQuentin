@@ -43,7 +43,7 @@ void clearTerminal() {
 
 void setCursorToStart() {
 #ifdef _WIN32
-    SetCursorPos(0,0);
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), {0,0});
 #elif __unix__
     printf("\033[%d;%dH", 0 + 1, 0 + 1);
 #endif
