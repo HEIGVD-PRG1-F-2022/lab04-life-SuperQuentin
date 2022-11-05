@@ -7,9 +7,12 @@
 #ifndef LIFE_UTIL_H
 #define LIFE_UTIL_H
 
+#include <string>
 
-#include <thread>
+#include "./terminal.h"
 
 void wait(int milliseconds);
+
+std::string getColorsCodeStr(TerminalColors color);
 
 #endif //LIFE_UTIL_H

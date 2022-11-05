@@ -14,3 +14,8 @@ using namespace std;
 void wait(int milliseconds) {
     this_thread::sleep_for(chrono::milliseconds(milliseconds));
 }
+
+string getColorsCodeStr(TerminalColors color){
+    return to_string((int) color);
+}
+
