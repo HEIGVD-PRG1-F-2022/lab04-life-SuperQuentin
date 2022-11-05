@@ -20,25 +20,25 @@ void showMainMenu() {
     clearTerminal();
     string tmp;
     char input;
-    bool updateDisplayFlag;
+    bool updateDisplayFlag = true;
 
     while (true) {
-        updateDisplayFlag = false;
-        input = getKeyPressDown();
 
-        switch (input) {
-            case 'q':
-                return;
-            case 'w':
-                selectedOptionIndex = wrap(selectedOptionIndex - 1, options);
-                updateDisplayFlag = true;
-                break;
-            case 's':
-                selectedOptionIndex = wrap(selectedOptionIndex + 1, options);
-                updateDisplayFlag = true;
-                break;
-            default:
-                updateDisplayFlag = false;
+        if(input != '\000') {
+            switch (input) {
+                case 'q':
+                    return;
+                case 'w':
+                    selectedOptionIndex = wrap(selectedOptionIndex - 1, options);
+                    updateDisplayFlag = true;
+                    break;
+                case 's':
+                    selectedOptionIndex = wrap(selectedOptionIndex + 1, options);
+                    updateDisplayFlag = true;
+                    break;
+                default:
+                    updateDisplayFlag = false;
+            }
         }
 
         if (updateDisplayFlag) {
@@ -54,5 +54,8 @@ void showMainMenu() {
             setCursorToStart();
             cout << tmp;
         }
+
+        input = getKeyPressDown();
+        updateDisplayFlag = false;
     }
 }
