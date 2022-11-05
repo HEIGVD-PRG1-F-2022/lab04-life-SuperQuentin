@@ -4,6 +4,15 @@
 // - Aellen Quentin
 //
 
+#include <iostream>
+
+#ifdef _WIN32
+
+#include <windows.h>
+#include <conio.h>
+
+#endif
+
 #include "../include/terminal.h"
 
 using namespace std;

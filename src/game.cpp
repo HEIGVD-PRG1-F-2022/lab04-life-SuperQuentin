@@ -4,10 +4,12 @@
 // - Aellen Quentin
 //
 
-#include "../include/game.h"
+#include <vector>
+
 #include "../include/draw.h"
 #include "../include/util.h"
 #include "../include/growth.h"
+#include "../include/game.h"
 
 using namespace std;
 

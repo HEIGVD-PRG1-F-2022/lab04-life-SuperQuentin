@@ -4,6 +4,7 @@
 // - Aellen Quentin
 //
 
+#include <iostream>
 #include "../include/draw.h"
 #include "../include/terminal.h"
 

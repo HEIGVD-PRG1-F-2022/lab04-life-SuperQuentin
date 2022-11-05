@@ -7,7 +7,6 @@
 #ifndef LIFE_DRAW_H
 #define LIFE_DRAW_H
 
-#include <iostream>
 #include <vector>
 #include "./cell.h"
 

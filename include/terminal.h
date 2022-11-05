@@ -7,15 +7,6 @@
 #ifndef LIFE_INPUT_H
 #define LIFE_INPUT_H
 
-#include <iostream>
-
-#ifdef _WIN32
-
-#include <windows.h>
-#include <conio.h>
-
-#endif
-
 void initTerminal();
 
 void terminateTerminal();
