@@ -9,6 +9,7 @@
 #include "../include/draw.h"
 #include "../include/util.h"
 #include "../include/growth.h"
+#include "../include/menu.h"
 #include "../include/game.h"
 
 using namespace std;
@@ -20,7 +21,7 @@ void initGame() {
 void startGame() {
     initGame();
 
-    gameLoop();
+    showMainMenu();
 
     endGame();
 }
