@@ -21,7 +21,7 @@ void initTerminal() {
 #ifdef _WIN32
     system(("chcp "s + std::to_string(CP_UTF8)).c_str()); // Set terminal to utf-8 with support of colors
 #elif __unix__
-    // system("stty raw"); // Set terminal to raw mode, it will help to detect keystroke without interruption
+    system("stty raw -echo"); // Set terminal to raw mode, it will help to detect keystroke without interruption
 #endif
     clearTerminal();
 }
@@ -30,7 +30,7 @@ void terminateTerminal() {
 #ifdef _WIN32
     // TODO: unset windows utf-8, but i'm kind of lazy now ƪ(˘⌣˘)ʃ
 #elif __unix__
-    system("stty cooked"); // Set back to default behavior of what we can attend of a marvelous terminal
+    system("stty cooked echo"); // Set back to default behavior of what we can attend of a marvelous terminal
 #endif
 }
 
