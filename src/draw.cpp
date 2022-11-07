@@ -13,13 +13,17 @@ using namespace std;
 void draw(vector<vector<Cell>> &lifeBoard) {
     string tmp;
 
-    for (auto &row: lifeBoard) {
-        for (auto &cell: row) {
+    tmp += "\033[s";
+
+    for (int x = 0; auto &row: lifeBoard) {
+        for (int y = 0;auto &cell: row) {
             tmp += getCellColor(cell);
+            ++y;
         }
-        tmp += "\n";
+        ++x;
+        x < lifeBoard.size() ? tmp += "\n\r" : "";
     }
 
-    setCursorToStart();
+    tmp += "\033[u";
     cout << tmp;
 }
