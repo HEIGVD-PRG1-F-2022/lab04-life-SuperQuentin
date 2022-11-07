@@ -49,8 +49,10 @@ void processEvolution(vector<vector<Cell>> &lifeBoard) {
                     neighborCounter++;
             }
 
-            if (cell == Cell::Dead && neighborCounter == 3) cell = Cell::WillBeBorn;
-            if (cell == Cell::Alive && (neighborCounter < 2 || neighborCounter > 3)) cell = Cell::WillDie;
+            if (cell == Cell::Dead && neighborCounter == 3)
+                cell = Cell::WillBeBorn;
+            if (cell == Cell::Alive && (neighborCounter < 2 || neighborCounter > 3))
+                cell = Cell::WillDie;
 
             ++y;
         }
@@ -61,8 +63,10 @@ void processEvolution(vector<vector<Cell>> &lifeBoard) {
 void processLifeCycle(vector<vector<Cell>> &lifeBoard) {
     for (int x = 0; auto &row: lifeBoard) {
         for (int y = 0; auto &cell: row) {
-            if (cell == Cell::WillBeBorn) cell = Cell::Alive;
-            if (cell == Cell::WillDie) cell = Cell::Dead;
+            if (cell == Cell::WillBeBorn)
+                cell = Cell::Alive;
+            if (cell == Cell::WillDie)
+                cell = Cell::Dead;
         }
     }
 }
