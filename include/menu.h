@@ -9,4 +9,6 @@
 
 void showMainMenu();
 
+void mainMenuAction(int index);
+
 #endif //LIFE_MENU_H

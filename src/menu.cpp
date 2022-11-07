@@ -9,39 +9,47 @@
 #include "../include/menu.h"
 #include "../include/terminal.h"
 #include "../include/util.h"
+#include "../include/game.h"
 
 using namespace std;
 
 void showMainMenu() {
     const vector<string> options{"Play", "Cell Presets", "Settings"};
 
-    static int selectedOptionIndex = 0;
+    int selectedOptionIndex = 0;
 
     clearTerminal();
     string tmp;
-    char input;
-    bool updateDisplayFlag = true;
+    char input = 0;
+    bool shouldUpdateMenu = true;
 
     while (true) {
-
-        if(input != '\000') {
+        tmp = "";
+        if (input != '\000') {
             switch (input) {
                 case 'q':
                     return;
                 case 'w':
                     selectedOptionIndex = wrap(selectedOptionIndex - 1, options);
-                    updateDisplayFlag = true;
+                    shouldUpdateMenu = true;
                     break;
                 case 's':
                     selectedOptionIndex = wrap(selectedOptionIndex + 1, options);
-                    updateDisplayFlag = true;
+                    shouldUpdateMenu = true;
+                    break;
+                case '\r':
+
+                    mainMenuAction(selectedOptionIndex);
+                    shouldUpdateMenu = true;
                     break;
                 default:
-                    updateDisplayFlag = false;
+                    shouldUpdateMenu = false;
+                    break;
             }
         }
 
-        if (updateDisplayFlag) {
+        if (shouldUpdateMenu) {
+            tmp += "\033[s"; // Save cursor position
             tmp += "--- Menu --- \n\r";
 
             for (int x = 0; x < options.size(); ++x) {
@@ -51,11 +59,29 @@ void showMainMenu() {
                        + "m " + options[x] + " \x1b[0m \n\r";
             }
 
-            setCursorToStart();
+            tmp += "------------ \n\r";
+            tmp += "\033[u"; // Restore cursor position
+
             cout << tmp;
         }
 
         input = getKeyPressDown();
-        updateDisplayFlag = false;
+        shouldUpdateMenu = false;
+    }
+}
+
+void mainMenuAction(int index) {
+    switch (index) {
+        case 0:
+            gameLoop();
+            break;
+        case 1:
+            // TODO: Cell Presets
+            break;
+        case 2:
+            // TODO: Settings
+            break;
+        default:
+            return;
     }
 }
