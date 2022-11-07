@@ -1,5 +1,7 @@
 //
-// Created by Syra on 03.11.2022.
+// Project name : LAB 04 - Life
+// Project members :
+// - Aellen Quentin
 //
 
-#include "../include/cell_presets.h"
+#include "../include/cell_preset.h"
