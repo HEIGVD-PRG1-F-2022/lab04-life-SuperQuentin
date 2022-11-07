@@ -32,6 +32,7 @@ void terminateTerminal() {
 #elif __unix__
     system("stty cooked echo"); // Set back to default behavior of what we can attend of a marvelous terminal
 #endif
+    clearTerminal();
 }
 
 char getKeyPressDown() {
