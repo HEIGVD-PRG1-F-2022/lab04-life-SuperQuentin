@@ -24,6 +24,8 @@ char getKeyPressDown();
 
 void clearTerminal();
 
+void getTerminalSize(int &width, int &height);
+
 void setCursorToStart();
 
 #endif //LIFE_INPUT_H

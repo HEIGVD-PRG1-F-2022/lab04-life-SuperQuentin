@@ -11,6 +11,11 @@
 #include <windows.h>
 #include <conio.h>
 
+#elif __unix__
+
+#include <sys/ioctl.h>
+#include <unistd.h>
+
 #endif
 
 #include "../include/terminal.h"
@@ -38,7 +43,7 @@ void terminateTerminal() {
 char getKeyPressDown() {
 #ifdef _WIN32
     if(kbhit()){
-    return getch();
+        return getch();
     }
     return '\000';
 #elif __unix__
@@ -54,11 +59,28 @@ void clearTerminal() {
 #endif
 }
 
+
+void getTerminalSize(int &width, int &height) {
+#ifdef _WIN32
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    width = (int)(csbi.srWindow.Right-csbi.srWindow.Left+1);
+    height = (int)(csbi.srWindow.Bottom-csbi.srWindow.Top+1);
+#elif __unix__
+    struct winsize w;
+    ioctl(fileno(stdout), TIOCGWINSZ, &w);
+    width = (int) (w.ws_col);
+    height = (int) (w.ws_row);
+#endif
+}
+
 void setCursorToStart() {
 #ifdef _WIN32
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), {0,0});
+    COORD Coord;
+    Coord.X = 0;
+    Coord.Y = 0;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Coord);
 #elif __unix__
     printf("\033[%d;%dH", 0 + 1, 0 + 1);
 #endif
 }
-
