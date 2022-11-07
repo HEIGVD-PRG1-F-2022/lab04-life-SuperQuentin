@@ -36,7 +36,10 @@ void terminateTerminal() {
 
 char getKeyPressDown() {
 #ifdef _WIN32
+    if(kbhit()){
     return getch();
+    }
+    return '\000';
 #elif __unix__
     return getchar();
 #endif
