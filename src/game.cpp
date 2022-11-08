@@ -11,11 +11,31 @@
 #include "../include/growth.h"
 #include "../include/menu.h"
 #include "../include/game.h"
+#include "../include/cell_preset.h"
 
 using namespace std;
 
+static bool firstStart = true;
+static int width = 28, height = 28;
+static vector<vector<Cell>> lifeBoard;
+
 void initGame() {
     initTerminal();
+
+    lifeBoard = vector(width, vector<Cell>(height));
+
+    if (firstStart) {
+        vector<vector<Cell>> preset = getCellPreset(CellPreset::Pulsar);
+        insertPreset(lifeBoard, preset, -7, -7);
+        insertPreset(lifeBoard, preset, 7, 7);
+    }
+}
+
+void resetGame() {
+    firstStart = true;
+    initGame();
+
+    commandsHelper();
 }
 
 void startGame() {
@@ -26,22 +46,8 @@ void startGame() {
     endGame();
 }
 
+
 void gameLoop() {
-    int width = 21, height = 21;
-    static bool firstStart = true;
-
-
-    static vector<vector<Cell>> lifeBoard(vector(width, vector<Cell>(height)));
-
-    if (firstStart) {
-        // TODO: delete later
-        lifeBoard[2][2] = Cell::Alive;
-        lifeBoard[3][3] = Cell::Alive;
-        lifeBoard[4][1] = Cell::Alive;
-        lifeBoard[4][2] = Cell::Alive;
-        lifeBoard[4][3] = Cell::Alive;
-    }
-
     char input;
     bool shouldUpdateGame = true, shouldStep = false;
     static bool gameIsPaused = false, debugDraw = false;
@@ -53,6 +59,9 @@ void gameLoop() {
         firstStart = false;
         if (input != '\000') {
             switch (input) {
+                case 'r':
+                    resetGame();
+                    break;
                 case '+' :
                     delay += delay < 10000 ? 25 : 0;
                     break;
