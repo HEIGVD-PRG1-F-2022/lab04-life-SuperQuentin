@@ -28,6 +28,7 @@ void initTerminal() {
 #elif __unix__
     system("stty raw -echo"); // Set terminal to raw mode, it will help to detect keystroke without interruption
 #endif
+    hideTerminalCursor();
     clearTerminal();
 }
 
@@ -37,12 +38,13 @@ void terminateTerminal() {
 #elif __unix__
     system("stty cooked echo"); // Set back to default behavior of what we can attend of a marvelous terminal
 #endif
+    showTerminalCursor();
     clearTerminal();
 }
 
 char getKeyPressDown() {
 #ifdef _WIN32
-    if(kbhit()){
+    if (kbhit()) {
         return getch();
     }
     return '\000';
@@ -59,13 +61,21 @@ void clearTerminal() {
 #endif
 }
 
+void hideTerminalCursor() {
+    cout << "\033[?25l";
+}
+
+void showTerminalCursor() {
+    cout << "\033[?25h";
+}
+
 
 void getTerminalSize(int &width, int &height) {
 #ifdef _WIN32
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
-    width = (int)(csbi.srWindow.Right-csbi.srWindow.Left+1);
-    height = (int)(csbi.srWindow.Bottom-csbi.srWindow.Top+1);
+    width = (int) (csbi.srWindow.Right - csbi.srWindow.Left + 1);
+    height = (int) (csbi.srWindow.Bottom - csbi.srWindow.Top + 1);
 #elif __unix__
     struct winsize w;
     ioctl(fileno(stdout), TIOCGWINSZ, &w);

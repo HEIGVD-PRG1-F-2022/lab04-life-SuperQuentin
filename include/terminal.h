@@ -24,6 +24,9 @@ char getKeyPressDown();
 
 void clearTerminal();
 
+void hideTerminalCursor();
+void showTerminalCursor();
+
 void getTerminalSize(int &width, int &height);
 
 void setCursorToStart();
