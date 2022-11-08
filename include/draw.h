@@ -10,6 +10,8 @@
 #include <vector>
 #include "./cell.h"
 
+
+void commandsHelper();
 void draw(std::vector<std::vector<Cell>> &lifeBoard);
 
 #endif //LIFE_DRAW_H

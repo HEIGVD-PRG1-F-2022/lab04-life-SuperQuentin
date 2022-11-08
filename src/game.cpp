@@ -33,7 +33,7 @@ void gameLoop() {
 
     static vector<vector<Cell>> lifeBoard(vector(width, vector<Cell>(height)));
 
-    if(firstStart) {
+    if (firstStart) {
         // TODO: delete later
         lifeBoard[2][2] = Cell::Alive;
         lifeBoard[3][3] = Cell::Alive;
@@ -43,12 +43,31 @@ void gameLoop() {
     }
 
     char input;
-    bool shouldUpdateGame = true;
+    bool shouldUpdateGame = true, shouldStep = false;
+    static bool gameIsPaused = false, debugDraw = false;
+    static unsigned int delay = 50;
+
+    commandsHelper();
 
     while (true) {
         firstStart = false;
         if (input != '\000') {
             switch (input) {
+                case '+' :
+                    delay += delay < 10000 ? 25 : 0;
+                    break;
+                case '-' :
+                    delay -= delay > 25 ? 25 : 0;
+                    break;
+                case 'i':
+                    shouldStep = true;
+                    break;
+                case '1':
+                    debugDraw = !debugDraw;
+                    break;
+                case 'p':
+                    gameIsPaused = !gameIsPaused;
+                    break;
                 case 'q':
                     clearTerminal();
                     return;
@@ -57,11 +76,17 @@ void gameLoop() {
             }
         }
 
-        if(shouldUpdateGame) {
+        if (shouldUpdateGame) {
             draw(lifeBoard);
-            processEvolution(lifeBoard);
-            processLifeCycle(lifeBoard);
-            wait(50);
+            if (!gameIsPaused || shouldStep) {
+                processEvolution(lifeBoard);
+                if (debugDraw) {
+                    draw(lifeBoard);
+                }
+                processLifeCycle(lifeBoard);
+                shouldStep = false;
+            }
+            wait(delay);
         }
 
         input = getKeyPressDown();
