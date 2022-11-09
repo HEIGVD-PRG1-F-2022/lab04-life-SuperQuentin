@@ -10,6 +10,7 @@
 #include "../include/terminal.h"
 #include "../include/util.h"
 #include "../include/game.h"
+#include "../include/cell_preset.h"
 
 using namespace std;
 
@@ -83,5 +84,68 @@ void mainMenuAction(int index) {
             break;
         default:
             return;
+    }
+}
+
+void showPresetMenu(vector<vector<Cell>> &lifeBoard) {
+    const vector<string> options{"Beehive", "Pulsar", "Pentadecathlon", "Glider"};
+
+    int selectedOptionIndex = 0;
+
+    clearTerminal();
+    string tmp;
+    char input = 0;
+    bool shouldUpdateMenu = true;
+
+    while (true) {
+        tmp = "";
+        if (input != '\000') {
+            vector<vector<Cell>> tmp;
+            int x, y;
+            switch (input) {
+                case 'q':
+                    return;
+                case 'w':
+                    selectedOptionIndex = wrap(selectedOptionIndex - 1, options);
+                    shouldUpdateMenu = true;
+                    break;
+                case 's':
+                    selectedOptionIndex = wrap(selectedOptionIndex + 1, options);
+                    shouldUpdateMenu = true;
+                    break;
+                case '\r':
+                    tmp = getCellPreset((CellPreset) selectedOptionIndex);
+                    clearTerminal();
+                    cout << "Enter coords x, y with a space (ex: 2 4) :" << endl << "> ";
+                    cin >> x >> y;
+                    insertPreset(lifeBoard, tmp, x, y);
+                    shouldUpdateMenu = true;
+                    return;
+                    break;
+                default:
+                    shouldUpdateMenu = false;
+                    break;
+            }
+        }
+
+        if (shouldUpdateMenu) {
+            tmp += "\033[s"; // Save cursor position
+            tmp += "--- Menu --- \n\r";
+
+            for (int x = 0; x < options.size(); ++x) {
+                tmp += "\x1b[38;5;"
+                       + (x == selectedOptionIndex ? getColorsCodeStr(TerminalColors::PINK) : getColorsCodeStr(
+                        TerminalColors::WHITE))
+                       + "m " + options[x] + " \x1b[0m \n\r";
+            }
+
+            tmp += "------------ \n\r";
+            tmp += "\033[u"; // Restore cursor position
+
+            cout << tmp;
+        }
+
+        input = getKeyPressDown();
+        shouldUpdateMenu = false;
     }
 }

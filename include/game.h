@@ -7,6 +7,8 @@
 #ifndef LIFE_LIFE_H
 #define LIFE_LIFE_H
 
+#include <vector>
+
 #include "./cell.h"
 #include "./terminal.h"
 

@@ -17,7 +17,7 @@ using namespace std;
 
 static bool firstStart = true;
 static int width = 28, height = 28;
-static vector<vector<Cell>> lifeBoard;
+static std::vector<std::vector<Cell>> lifeBoard;
 
 void initGame() {
     initTerminal();
@@ -26,8 +26,8 @@ void initGame() {
 
     if (firstStart) {
         vector<vector<Cell>> preset = getCellPreset(CellPreset::Pulsar);
-        insertPreset(lifeBoard, preset, -7, -7);
-        insertPreset(lifeBoard, preset, 7, 7);
+        //insertPreset(lifeBoard, preset, -7, -7);
+        //insertPreset(lifeBoard, preset, 7, 7);
     }
 }
 
@@ -61,6 +61,9 @@ void gameLoop() {
             switch (input) {
                 case 'r':
                     resetGame();
+                    break;
+                case '3':
+                    showPresetMenu(lifeBoard);
                     break;
                 case '+' :
                     delay += delay < 10000 ? 25 : 0;
