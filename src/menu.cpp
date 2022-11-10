@@ -116,7 +116,7 @@ void showPresetMenu(vector<vector<Cell>> &lifeBoard) {
                 case '\r':
                     tmp = getCellPreset((CellPreset) selectedOptionIndex);
                     clearTerminal();
-                    cout << "Enter coords x, y with a space (ex: 2 4) :" << endl << "> ";
+                    cout << "(board size: x:" << lifeBoard.size()-1 << ", y:" << lifeBoard[0].size() << ")" << " Enter coords x, y with a space (ex: 0 4) :" << endl << "> ";
                     cin >> x >> y;
                     insertPreset(lifeBoard, tmp, x, y);
                     shouldUpdateMenu = true;
