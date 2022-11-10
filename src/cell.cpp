@@ -14,7 +14,7 @@ string getCellColor(Cell &cell) {
         case Cell::WillBeBorn:
             return "\x1b[38;5;" + getColorsCodeStr(TerminalColors::GREEN) + "m * \x1b[0m";
         case Cell::Alive:
-            return "\x1b[38;5;" + getColorsCodeStr(TerminalColors::BLUE) + "m * \x1b[0m";
+            return "\x1b[38;5;" + getColorsCodeStr(TerminalColors::PINK) + "m * \x1b[0m";
         case Cell::WillDie:
             return "\x1b[38;5;" + getColorsCodeStr(TerminalColors::RED) + "m * \x1b[0m";
         case Cell::Dead:
