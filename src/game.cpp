@@ -15,24 +15,31 @@
 
 using namespace std;
 
-static bool firstStart = true;
-static int width = 28, height = 28;
 static std::vector<std::vector<Cell>> lifeBoard;
 
 void initGame() {
     initTerminal();
+    int width, height;
+    getTerminalSize(width, height);
+    height -= 2;
+    width /= 3;
 
-    lifeBoard = vector(width, vector<Cell>(height));
+    lifeBoard = vector(height, vector<Cell>(width));
 
-    if (firstStart) {
-        vector<vector<Cell>> preset = getCellPreset(CellPreset::Pulsar);
-        //insertPreset(lifeBoard, preset, -7, -7);
-        //insertPreset(lifeBoard, preset, 7, 7);
-    }
+    vector<vector<vector<Cell>>> presets{
+            getCellPreset(CellPreset::BeeHive),
+            getCellPreset(CellPreset::Pulsar),
+            getCellPreset(CellPreset::Pentadecathlon),
+            getCellPreset(CellPreset::Glider),
+    };
+
+    insertPreset(lifeBoard, presets[0], 14, 0);
+    insertPreset(lifeBoard, presets[1], 0, 25);
+    insertPreset(lifeBoard, presets[2], -7, 0);
+    insertPreset(lifeBoard, presets[3], 0, 0);
 }
 
 void resetGame() {
-    firstStart = true;
     initGame();
 
     commandsHelper();
@@ -56,7 +63,6 @@ void gameLoop() {
     commandsHelper();
 
     while (true) {
-        firstStart = false;
         if (input != '\000') {
             switch (input) {
                 case 'r':
@@ -64,6 +70,8 @@ void gameLoop() {
                     break;
                 case '3':
                     showPresetMenu(lifeBoard);
+                    clearTerminal();
+                    commandsHelper();
                     break;
                 case '+' :
                     delay += delay < 10000 ? 25 : 0;
