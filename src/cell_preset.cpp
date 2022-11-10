@@ -36,6 +36,11 @@ vector<vector<Cell>> getCellPreset(CellPreset preset) {
             "001\n"
             "111\n";
 
+    const string pentadecathlon =
+            ".1..11....11..1.\n"
+            "1...111..111...1\n"
+            ".1..11....11..1.\n";
+
     switch (preset) {
         case CellPreset::BeeHive:
             cellPreset = strToCell(beehive);
@@ -44,6 +49,7 @@ vector<vector<Cell>> getCellPreset(CellPreset preset) {
             cellPreset = strToCell(pulsar);
             break;
         case CellPreset::Pentadecathlon:
+            cellPreset = strToCell(pentadecathlon);
             break;
         case CellPreset::Glider:
             cellPreset = strToCell(glider);
