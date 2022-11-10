@@ -26,7 +26,7 @@ void initTerminal() {
 #ifdef _WIN32
     system(("chcp "s + std::to_string(CP_UTF8)).c_str()); // Set terminal to utf-8 with support of colors
 #elif __unix__
-    system("stty raw -echo"); // Set terminal to raw mode, it will help to detect keystroke without interruption
+    system("stty raw -echo");   // Set terminal to raw mode, it will help to detect keystroke without interruption
 #endif
     hideTerminalCursor();
     clearTerminal();
