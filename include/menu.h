@@ -29,8 +29,8 @@ void showPresetMenu(std::vector<std::vector<Cell>> &lifeBoard);
 
 /**
  * Display interface on which coords insert preset
- * @param index
- * @param lifeBoard
+ * @param index select which cells preset will be insert
+ * @param lifeBoard 2D vector array of the actual game board
  */
 void askPresetChoice(CellPreset preset, std::vector<std::vector<Cell>> &lifeBoard);
 

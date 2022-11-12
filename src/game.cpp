@@ -19,10 +19,12 @@ static std::vector<std::vector<Cell>> lifeBoard;
 
 void initGame() {
     initTerminal();
+
     int width, height;
     getTerminalSize(width, height);
-    height -= 2;
-    width /= 3;
+
+    height -= 2; // 2 = space for commandsHelper lines
+    width /= 3; // 3 = space of a displayed "pixel"/* of the life board
 
     lifeBoard = vector(height, vector<Cell>(width));
 
@@ -57,6 +59,8 @@ void startGame() {
 void gameLoop() {
     char input;
     bool shouldStep = false;
+
+    // use static to not lose state when leaving to menu and returning in game
     static bool gameIsPaused = false, debugDraw = false;
     static unsigned int delay = 50;
 
@@ -98,6 +102,7 @@ void gameLoop() {
         }
 
         draw(lifeBoard);
+
         if (!gameIsPaused || shouldStep) {
             processEvolution(lifeBoard);
             if (debugDraw) {
@@ -106,6 +111,7 @@ void gameLoop() {
             processLifeCycle(lifeBoard);
             shouldStep = false;
         }
+
         wait(delay);
     }
 }

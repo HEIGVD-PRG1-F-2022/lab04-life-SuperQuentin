@@ -15,19 +15,19 @@
 void wait(int milliseconds);
 
 /**
- * Tranforme enum color to a string ansi code usable when you want to compose colored string
+ * Transform enum color to a string ansi code usable when you want to compose colored string
  * @param color wanted color for text to be display
  * @return cast of TerminalColor integer to a string
  */
 std::string getColorsCodeStr(TerminalColors color);
 
 /**
- * Applie color transformation on a given text
+ * Apply color transformation on a given text
  * @param text to display
  * @param colors wanted color for text to be display
  * @return string with ansi codes applied to display colored text
  */
-std::string getColoredStr(std::string text, TerminalColors colors);;
+std::string getColoredStr(std::string text, TerminalColors colors);
 
 /**
  * Wrap value between a min and max value
