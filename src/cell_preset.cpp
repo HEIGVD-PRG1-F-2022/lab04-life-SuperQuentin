@@ -9,37 +9,38 @@
 
 using namespace std;
 
+const string beehive =
+        "0110\n"
+        "1001\n"
+        "0110\n";
+
+const string pulsar =
+        "..111...111..\n"
+        ".............\n"
+        "1....1.1....1\n"
+        "1....1.1....1\n"
+        "1....1.1....1\n"
+        "..111...111..\n"
+        ".............\n"
+        "..111...111..\n"
+        "1....1.1....1\n"
+        "1....1.1....1\n"
+        "1....1.1....1\n"
+        ".............\n"
+        "..111...111..\n";
+
+const string glider =
+        "010\n"
+        "001\n"
+        "111\n";
+
+const string pentadecathlon =
+        ".1..11....11..1.\n"
+        "1...111..111...1\n"
+        ".1..11....11..1.\n";
+
 vector<vector<Cell>> getCellPreset(CellPreset preset) {
     vector<vector<Cell>> cellPreset;
-    const string beehive =
-            "0110\n"
-            "1001\n"
-            "0110\n";
-
-    const string pulsar =
-            "..111...111..\n"
-            ".............\n"
-            "1....1.1....1\n"
-            "1....1.1....1\n"
-            "1....1.1....1\n"
-            "..111...111..\n"
-            ".............\n"
-            "..111...111..\n"
-            "1....1.1....1\n"
-            "1....1.1....1\n"
-            "1....1.1....1\n"
-            ".............\n"
-            "..111...111..\n";
-
-    const string glider =
-            "010\n"
-            "001\n"
-            "111\n";
-
-    const string pentadecathlon =
-            ".1..11....11..1.\n"
-            "1...111..111...1\n"
-            ".1..11....11..1.\n";
 
     switch (preset) {
         case CellPreset::BeeHive:
