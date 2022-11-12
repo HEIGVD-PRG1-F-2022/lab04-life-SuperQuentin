@@ -1,6 +1,10 @@
-#include "../include/game.h"
+//
+// Project name : LAB 04 - Life
+// Project members :
+// - Aellen Quentin
+//
 
-using namespace std;
+#include "../include/game.h"
 
 int main() {
 
