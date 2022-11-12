@@ -56,7 +56,7 @@ void startGame() {
 
 void gameLoop() {
     char input;
-    bool shouldUpdateGame = true, shouldStep = false;
+    bool shouldStep = false;
     static bool gameIsPaused = false, debugDraw = false;
     static unsigned int delay = 50;
 
@@ -93,22 +93,20 @@ void gameLoop() {
                     clearTerminal();
                     return;
                 default:
-                    shouldUpdateGame = true;
+                    break;
             }
         }
 
-        if (shouldUpdateGame) {
-            draw(lifeBoard);
-            if (!gameIsPaused || shouldStep) {
-                processEvolution(lifeBoard);
-                if (debugDraw) {
-                    draw(lifeBoard);
-                }
-                processLifeCycle(lifeBoard);
-                shouldStep = false;
+        draw(lifeBoard);
+        if (!gameIsPaused || shouldStep) {
+            processEvolution(lifeBoard);
+            if (debugDraw) {
+                draw(lifeBoard);
             }
-            wait(delay);
+            processLifeCycle(lifeBoard);
+            shouldStep = false;
         }
+        wait(delay);
     }
 }
 
