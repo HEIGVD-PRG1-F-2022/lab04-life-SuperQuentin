@@ -66,7 +66,7 @@ void insertPreset(std::vector<std::vector<Cell>> &lifeBoard, std::vector<std::ve
     int xLife, yLife;
     for (int x = 0; x < preset.size(); ++x) {
         for (int y = 0; y < preset[x].size(); ++y) {
-            int rowSize = lifeBoard.size() - 1, colSize = lifeBoard[0].size() - 1;
+            int rowSize =  static_cast<int>(lifeBoard.size() - 1), colSize =  static_cast<int>(lifeBoard[0].size() - 1);
             xLife = x + xOffset;
             xLife = wrap(xLife, 0, rowSize);
 
@@ -77,10 +77,10 @@ void insertPreset(std::vector<std::vector<Cell>> &lifeBoard, std::vector<std::ve
     }
 }
 
-vector<vector<Cell>> strToCell(string cellString) {
+vector<vector<Cell>> strToCell(const string &cellString) {
     vector<vector<Cell>> cellBoard;
     vector<Cell> col;
-    for (char &cell: cellString) {
+    for (const char &cell: cellString) {
         switch (cell) {
             case '\n':
                 cellBoard.push_back(col);

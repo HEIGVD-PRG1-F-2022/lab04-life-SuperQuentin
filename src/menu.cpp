@@ -14,7 +14,7 @@
 using namespace std;
 
 void showMainMenu() {
-    const vector<string> options{"Play", "Rules", "Settings"};
+    const vector<string> options{"Play", "Rules"};
 
     int selectedOptionIndex = 0;
 
@@ -74,9 +74,6 @@ void mainMenuAction(int index) {
 
             getKey();
             clearTerminal();
-            break;
-        case 2:
-            // TODO: Settings
             break;
         default:
             break;

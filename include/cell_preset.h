@@ -34,7 +34,7 @@ std::vector<std::vector<Cell>> getCellPreset(CellPreset preset);
  * @param cellString multiline string literal
  * @return 2D vector array of cells
  */
-std::vector<std::vector<Cell>> strToCell(std::string cellString);
+std::vector<std::vector<Cell>> strToCell(const std::string &cellString);
 
 
 /**

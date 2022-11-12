@@ -27,7 +27,7 @@ std::string getColorsCodeStr(TerminalColors color);
  * @param colors wanted color for text to be display
  * @return string with ansi codes applied to display colored text
  */
-std::string getColoredStr(std::string text, TerminalColors colors);
+std::string getColoredStr(const std::string &text, TerminalColors colors);
 
 /**
  * Wrap value between a min and max value
@@ -46,6 +46,6 @@ int wrap(int value, int min, int max);
  * @param vector of string, will be use to set max value
  * @return wrapped value between 0 et vector size
  */
-int wrap(int value, std::vector<std::string> vector);
+int wrap(int value, const std::vector<std::string> &vector);
 
 #endif // LIFE_UTIL_H

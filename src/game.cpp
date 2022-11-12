@@ -61,7 +61,7 @@ void gameLoop() {
 
     // use static to not lose state when leaving to menu and returning in game
     static bool gameIsPaused = false, debugDraw = false;
-    static unsigned int delay = 50;
+    static int delay = 50;
 
     commandsHelper();
 

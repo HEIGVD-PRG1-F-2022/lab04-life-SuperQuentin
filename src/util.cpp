@@ -19,7 +19,7 @@ string getColorsCodeStr(TerminalColors color) {
     return to_string((int) color);
 }
 
-string getColoredStr(string text, TerminalColors colors){
+string getColoredStr(const string &text, TerminalColors colors){
     return "\x1b[38;5;"+ getColorsCodeStr(colors) + "m" + text + "\x1b[0m";
 }
 
@@ -33,8 +33,8 @@ int wrap(int value, int min, int max) {
     return min + (value - min) % wrapSize;
 }
 
-int wrap(int value, vector<string> vector) {
-    int wrapSize = vector.size() - 1;
+int wrap(int value, const vector<string> &vector) {
+    int wrapSize = static_cast<int>(vector.size() - 1);
 
     return wrap(value, 0, wrapSize);
 }
