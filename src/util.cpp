@@ -19,6 +19,10 @@ string getColorsCodeStr(TerminalColors color) {
     return to_string((int) color);
 }
 
+string getColoredStr(string text, TerminalColors colors){
+    return "\x1b[38;5;"+ getColorsCodeStr(colors) + "m" + text + "\x1b[0m";
+}
+
 int wrap(int value, int min, int max) {
     int wrapSize = max - min + 1;
 
@@ -32,9 +36,5 @@ int wrap(int value, int min, int max) {
 int wrap(int value, vector<string> vector) {
     int wrapSize = vector.size();
 
-    if (value < 0) {
-        value += wrapSize * ((value) / wrapSize + 1);
-    }
-
-    return (value) % wrapSize;
+    return wrap(value, 0, wrapSize);
 }
