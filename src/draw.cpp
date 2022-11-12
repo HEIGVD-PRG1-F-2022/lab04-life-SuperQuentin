@@ -6,12 +6,12 @@
 
 #include <iostream>
 #include "../include/draw.h"
-#include "../include/terminal.h"
 
 using namespace std;
 
 void commandsHelper(){
-    cout << "q = exit, p = pause, i = step, -/+ = add or sub 25ms (max: 10s, min: 25ms)" << endl << "1 = display debug cell (RED = will die, Green = Will be born), r = to restart the board, 3 = presets" << endl;
+    cout << "q = exit, p = pause, i = step, -/+ = add or sub 25ms (max: 10s, min: 25ms)" << endl
+         << "1 = display debug cell (RED = will die, Green = Will be born), r = to restart the board, 3 = presets" << endl;
 }
 
 void draw(vector<vector<Cell>> &lifeBoard) {
