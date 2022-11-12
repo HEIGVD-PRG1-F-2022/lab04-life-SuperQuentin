@@ -9,6 +9,9 @@
 
 #include <string>
 
+/**
+ * Cell life state
+ */
 enum class Cell {
     Dead,
     WillBeBorn,
@@ -16,6 +19,11 @@ enum class Cell {
     WillDie,
 };
 
+/**
+ * Match a color to the cell life state
+ * @param cell reference of a Cell variable
+ * @return a colored "pixel" with the correct
+ */
 std::string getCellColor(Cell &cell);
 
 #endif //LIFE_CELL_H
