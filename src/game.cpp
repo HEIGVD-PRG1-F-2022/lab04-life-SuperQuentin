@@ -63,6 +63,7 @@ void gameLoop() {
     commandsHelper();
 
     while (true) {
+        input = getKeyPressDown();
         if (input != '\000') {
             switch (input) {
                 case 'r':
@@ -108,8 +109,6 @@ void gameLoop() {
             }
             wait(delay);
         }
-
-        input = getKeyPressDown();
     }
 }
 
