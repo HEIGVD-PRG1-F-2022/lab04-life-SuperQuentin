@@ -61,7 +61,6 @@ void mainMenuAction(int index) {
     string tmp;
     switch (index) {
         case 0:
-            commandsHelper();
             gameLoop();
             break;
         case 1:
