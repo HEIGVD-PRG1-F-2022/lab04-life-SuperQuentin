@@ -95,57 +95,59 @@ void showPresetMenu(vector<vector<Cell>> &lifeBoard) {
     clearTerminal();
     string tmp;
     char input = 0;
-    bool shouldUpdateMenu = true;
 
     while (true) {
         tmp = "";
-        if (input != '\000') {
-            vector<vector<Cell>> tmp;
-            int x, y;
             switch (input) {
                 case 'q':
                     return;
                 case 'w':
                     selectedOptionIndex = wrap(selectedOptionIndex - 1, options);
-                    shouldUpdateMenu = true;
                     break;
                 case 's':
                     selectedOptionIndex = wrap(selectedOptionIndex + 1, options);
-                    shouldUpdateMenu = true;
                     break;
                 case '\r':
-                    tmp = getCellPreset((CellPreset) selectedOptionIndex);
-                    clearTerminal();
-                    cout << "(board size: x:" << lifeBoard.size()-1 << ", y:" << lifeBoard[0].size() << ")" << " Enter coords x, y with a space (ex: 0 4) :" << endl << "> ";
-                    cin >> x >> y;
-                    insertPreset(lifeBoard, tmp, x, y);
-                    shouldUpdateMenu = true;
-                    return;
-                    break;
+                askPresetChoice((CellPreset) selectedOptionIndex, lifeBoard);
+                return; // <-- loop exit
                 default:
-                    shouldUpdateMenu = false;
                     break;
             }
-        }
 
-        if (shouldUpdateMenu) {
             tmp += "\033[s"; // Save cursor position
-            tmp += "--- Menu --- \n\r";
+        tmp += "--- Presets --- \n\r";
 
             for (int x = 0; x < options.size(); ++x) {
-                tmp += "\x1b[38;5;"
-                       + (x == selectedOptionIndex ? getColorsCodeStr(TerminalColors::PINK) : getColorsCodeStr(
-                        TerminalColors::WHITE))
-                       + "m " + options[x] + " \x1b[0m \n\r";
+            tmp += getColoredStr(options[x],
+                                 (x == selectedOptionIndex ? TerminalColors::PINK : TerminalColors::WHITE)) + "\n\r";
             }
 
-            tmp += "------------ \n\r";
+        tmp += "--------------- \n\r";
             tmp += "\033[u"; // Restore cursor position
 
             cout << tmp;
+
+        input = getKey();
+    }
         }
 
-        input = getKeyPressDown();
-        shouldUpdateMenu = false;
-    }
+void askPresetChoice(CellPreset preset, vector<vector<Cell>> &lifeBoard) {
+    vector<vector<Cell>> tmp_preset;
+    tmp_preset = getCellPreset(preset);
+
+    clearTerminal();
+
+    const string boardCurrentSizeDescription =
+            "(board size: x:" + to_string(lifeBoard.size() - 1) + ", y:" + to_string(lifeBoard[0].size()) + ")";
+
+    cout << getColoredStr(boardCurrentSizeDescription, TerminalColors::PINK)
+         << " Enter coords x, y with a space (ex: 0 4) :"
+         << endl << "> ";
+
+    showTerminalCursor();
+    int xOffset = 0, yOffset = 0;
+    cin >> xOffset >> yOffset;
+    hideTerminalCursor();
+
+    insertPreset(lifeBoard, tmp_preset, xOffset, yOffset);
 }

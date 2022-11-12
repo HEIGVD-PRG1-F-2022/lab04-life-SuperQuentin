@@ -21,6 +21,16 @@ void showMainMenu();
  */
 void mainMenuAction(int index);
 
+/**
+ * Presets menu, will let user select what preset he want insert into the lifeBoard
+ */
 void showPresetMenu(std::vector<std::vector<Cell>> &lifeBoard);
 
-#endif //LIFE_MENU_H
+/**
+ * Display interface on which coords insert preset
+ * @param index
+ * @param lifeBoard
+ */
+void askPresetChoice(CellPreset preset, std::vector<std::vector<Cell>> &lifeBoard);
+
+#endif // LIFE_MENU_H
