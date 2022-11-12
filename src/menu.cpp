@@ -25,34 +25,34 @@ void showMainMenu() {
 
     while (true) {
         tmp = "";
-            switch (input) {
-                case 'q':
-                    return;
-                case 'w':
-                    selectedOptionIndex = wrap(selectedOptionIndex - 1, options);
-                    break;
-                case 's':
-                    selectedOptionIndex = wrap(selectedOptionIndex + 1, options);
-                    break;
-                case '\r':
-                    mainMenuAction(selectedOptionIndex);
-                    break;
-                default:
-                    break;
-            }
+        switch (input) {
+            case 'q':
+                return; // <-- loop exit
+            case 'w':
+                selectedOptionIndex = wrap(selectedOptionIndex - 1, options);
+                break;
+            case 's':
+                selectedOptionIndex = wrap(selectedOptionIndex + 1, options);
+                break;
+            case '\r':
+                mainMenuAction(selectedOptionIndex);
+                break;
+            default:
+                break;
+        }
 
-            tmp += "\033[s"; // Save cursor position
+        tmp += "\033[s"; // Save cursor position
         tmp += "--- Main Menu --- \n\r";
 
-            for (int x = 0; x < options.size(); ++x) {
+        for (int x = 0; x < options.size(); ++x) {
             tmp += getColoredStr(options[x],
                                  (x == selectedOptionIndex ? TerminalColors::PINK : TerminalColors::WHITE)) + "\n\r";
-            }
+        }
 
         tmp += "----------------- \n\r";
-            tmp += "\033[u"; // Restore cursor position
+        tmp += "\033[u"; // Restore cursor position
 
-            cout << tmp;
+        cout << tmp;
         input = getKey();
     }
 }
@@ -75,9 +75,7 @@ void mainMenuAction(int index) {
             cout << tmp;
 
             getKey();
-
             clearTerminal();
-            return;
             break;
         case 2:
             // TODO: Settings
@@ -98,38 +96,38 @@ void showPresetMenu(vector<vector<Cell>> &lifeBoard) {
 
     while (true) {
         tmp = "";
-            switch (input) {
-                case 'q':
-                    return;
-                case 'w':
-                    selectedOptionIndex = wrap(selectedOptionIndex - 1, options);
-                    break;
-                case 's':
-                    selectedOptionIndex = wrap(selectedOptionIndex + 1, options);
-                    break;
-                case '\r':
+        switch (input) {
+            case 'q':
+                return;
+            case 'w':
+                selectedOptionIndex = wrap(selectedOptionIndex - 1, options);
+                break;
+            case 's':
+                selectedOptionIndex = wrap(selectedOptionIndex + 1, options);
+                break;
+            case '\r':
                 askPresetChoice((CellPreset) selectedOptionIndex, lifeBoard);
                 return; // <-- loop exit
-                default:
-                    break;
-            }
+            default:
+                break;
+        }
 
-            tmp += "\033[s"; // Save cursor position
+        tmp += "\033[s"; // Save cursor position
         tmp += "--- Presets --- \n\r";
 
-            for (int x = 0; x < options.size(); ++x) {
+        for (int x = 0; x < options.size(); ++x) {
             tmp += getColoredStr(options[x],
                                  (x == selectedOptionIndex ? TerminalColors::PINK : TerminalColors::WHITE)) + "\n\r";
-            }
+        }
 
         tmp += "--------------- \n\r";
-            tmp += "\033[u"; // Restore cursor position
+        tmp += "\033[u"; // Restore cursor position
 
-            cout << tmp;
+        cout << tmp;
 
         input = getKey();
     }
-        }
+}
 
 void askPresetChoice(CellPreset preset, vector<vector<Cell>> &lifeBoard) {
     vector<vector<Cell>> tmp_preset;
