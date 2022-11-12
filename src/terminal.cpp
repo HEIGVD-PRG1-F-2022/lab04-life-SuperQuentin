@@ -91,14 +91,3 @@ void getTerminalSize(int &width, int &height) {
     height = (int) (w.ws_row);
 #endif
 }
-
-void setCursorToStart() {
-#ifdef _WIN32
-    COORD Coord;
-    Coord.X = 0;
-    Coord.Y = 0;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Coord);
-#elif __unix__
-    printf("\033[%d;%dH", 0 + 1, 0 + 1);
-#endif
-}
