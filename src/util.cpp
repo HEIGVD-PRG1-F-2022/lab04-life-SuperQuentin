@@ -34,7 +34,7 @@ int wrap(int value, int min, int max) {
 }
 
 int wrap(int value, vector<string> vector) {
-    int wrapSize = vector.size();
+    int wrapSize = vector.size() - 1;
 
     return wrap(value, 0, wrapSize);
 }
