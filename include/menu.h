@@ -9,6 +9,7 @@
 
 #include <vector>
 #include "cell.h"
+#include "cell_preset.h"
 
 /**
  * Display main menu and listen input
