@@ -49,6 +49,14 @@ char getKeyPressDown() {
     }
     return '\000';
 #elif __unix__
+    return getchar(); //TODO make it non blocant
+#endif
+}
+
+char getKey() {
+#ifdef _WIN32
+    return _getch();
+#elif __unix__
     return getchar();
 #endif
 }

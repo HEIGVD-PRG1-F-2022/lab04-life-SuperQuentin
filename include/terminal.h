@@ -22,6 +22,8 @@ void terminateTerminal();
 
 char getKeyPressDown();
 
+char getKey();
+
 void clearTerminal();
 
 void hideTerminalCursor();
