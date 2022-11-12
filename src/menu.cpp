@@ -10,80 +10,80 @@
 #include "../include/terminal.h"
 #include "../include/util.h"
 #include "../include/game.h"
-#include "../include/cell_preset.h"
+#include "../include/draw.h"
 
 using namespace std;
 
 void showMainMenu() {
-    const vector<string> options{"Play", "Cell Presets", "Settings"};
+    const vector<string> options{"Play", "Rules", "Settings"};
 
     int selectedOptionIndex = 0;
 
     clearTerminal();
     string tmp;
     char input = 0;
-    bool shouldUpdateMenu = true;
 
     while (true) {
         tmp = "";
-        if (input != '\000') {
             switch (input) {
                 case 'q':
                     return;
                 case 'w':
                     selectedOptionIndex = wrap(selectedOptionIndex - 1, options);
-                    shouldUpdateMenu = true;
                     break;
                 case 's':
                     selectedOptionIndex = wrap(selectedOptionIndex + 1, options);
-                    shouldUpdateMenu = true;
                     break;
                 case '\r':
-
                     mainMenuAction(selectedOptionIndex);
-                    shouldUpdateMenu = true;
                     break;
                 default:
-                    shouldUpdateMenu = false;
                     break;
             }
-        }
 
-        if (shouldUpdateMenu) {
             tmp += "\033[s"; // Save cursor position
-            tmp += "--- Menu --- \n\r";
+        tmp += "--- Main Menu --- \n\r";
 
             for (int x = 0; x < options.size(); ++x) {
-                tmp += "\x1b[38;5;"
-                       + (x == selectedOptionIndex ? getColorsCodeStr(TerminalColors::PINK) : getColorsCodeStr(
-                        TerminalColors::WHITE))
-                       + "m " + options[x] + " \x1b[0m \n\r";
+            tmp += getColoredStr(options[x],
+                                 (x == selectedOptionIndex ? TerminalColors::PINK : TerminalColors::WHITE)) + "\n\r";
             }
 
-            tmp += "------------ \n\r";
+        tmp += "----------------- \n\r";
             tmp += "\033[u"; // Restore cursor position
 
             cout << tmp;
-        }
-
-        input = getKeyPressDown();
-        shouldUpdateMenu = false;
+        input = getKey();
     }
 }
 
 void mainMenuAction(int index) {
+    string tmp;
     switch (index) {
         case 0:
+            commandsHelper();
             gameLoop();
             break;
         case 1:
-            // TODO: Cell Presets
+            clearTerminal();
+
+            tmp += "Go check wikipedia page, there is the link :\n";
+            tmp += getColoredStr("https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Rules\n", TerminalColors::BLUE);
+
+            tmp += "Press any key do continue...";
+
+            cout << tmp;
+
+            getKey();
+
+            clearTerminal();
+            return;
             break;
         case 2:
             // TODO: Settings
             break;
         default:
-            return;
+            break;
     }
 }
 
