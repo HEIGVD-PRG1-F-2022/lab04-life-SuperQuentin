@@ -66,6 +66,9 @@ void gameLoop() {
         input = getKeyPressDown();
         if (input != '\000') {
             switch (input) {
+                case 'q':
+                    clearTerminal();
+                    return; // <-- loop exit
                 case 'r':
                     resetGame();
                     break;
@@ -89,9 +92,6 @@ void gameLoop() {
                 case 'p':
                     gameIsPaused = !gameIsPaused;
                     break;
-                case 'q':
-                    clearTerminal();
-                    return;
                 default:
                     break;
             }
