@@ -10,7 +10,6 @@
 #include "../include/terminal.h"
 #include "../include/util.h"
 #include "../include/game.h"
-#include "../include/draw.h"
 
 using namespace std;
 
