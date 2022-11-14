@@ -14,7 +14,6 @@
 #elif __unix__
 
 #include <sys/ioctl.h>
-#include <unistd.h>
 
 #endif
 
@@ -49,7 +48,7 @@ char getKeyPressDown() {
     }
     return '\000';
 #elif __unix__
-    return getchar(); //TODO make it non blocant
+    return (char)getchar(); //TODO make it non blocant
 #endif
 }
 
