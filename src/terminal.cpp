@@ -57,7 +57,7 @@ char getKey() {
 #ifdef _WIN32
     return (char)_getch();
 #elif __unix__
-    return getchar();
+    return (char)getchar();
 #endif
 }
 
