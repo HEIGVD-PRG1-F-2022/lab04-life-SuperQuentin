@@ -10,8 +10,10 @@
 using namespace std;
 
 void commandsHelper(){
-    cout << "q = exit, p = pause, i = step, -/+ = add or sub 25ms (max: 10s, min: 25ms)" << endl
-         << "1 = display debug cell (RED = will die, Green = Will be born), r = to restart the board, 3 = presets" << endl;
+    string tmp;
+    tmp += "q = exit, p = pause, i = step, -/+ = add or sub 25ms (max: 10s, min: 25ms) \n\r";
+    tmp += "1 = display debug cell (RED = will die, Green = Will be born), r = to restart the board, 3 = presets \n\r";
+    cout << tmp;
 }
 
 void draw(vector<vector<Cell>> &lifeBoard) {

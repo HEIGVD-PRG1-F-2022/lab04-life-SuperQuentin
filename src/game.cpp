@@ -63,6 +63,7 @@ void gameLoop() {
     static bool gameIsPaused = false, debugDraw = false;
     static int delay = 50;
 
+    clearTerminal();
     commandsHelper();
 
     while (true) {
