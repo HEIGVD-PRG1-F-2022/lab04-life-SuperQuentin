@@ -65,8 +65,8 @@ void mainMenuAction(int index) {
         case 1:
             clearTerminal();
 
-            tmp += "Go check wikipedia page, there is the link :\n";
-            tmp += getColoredStr("https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Rules\n", TerminalColors::BLUE);
+            tmp += "Go check wikipedia page, there is the link :\n\r";
+            tmp += getColoredStr("https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Rules\n\r", TerminalColors::BLUE);
 
             tmp += "Press any key do continue...";
 
