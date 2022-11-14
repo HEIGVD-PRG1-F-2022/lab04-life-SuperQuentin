@@ -2,6 +2,10 @@
 
 Implementation of Conway's Game of Life with a terminal.
 
+## Known issues
+
+need to press a random keep to make it work on unix system
+
 ## Features
 
 - BlAzInG FaSt ReFrEsH (flicker free)
