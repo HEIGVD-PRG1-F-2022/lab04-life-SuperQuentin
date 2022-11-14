@@ -131,11 +131,14 @@ void askPresetChoice(CellPreset preset, vector<vector<Cell>> &lifeBoard) {
     clearTerminal();
 
     const string boardCurrentSizeDescription =
-            "(board size: x:" + to_string(lifeBoard.size() - 1) + ", y:" + to_string(lifeBoard[0].size()) + ")";
+            "(board size: x:" + to_string(lifeBoard.size() - 1) + ", y:" + to_string(lifeBoard[0].size()) + ") ";
+    string tmp;
 
-    cout << getColoredStr(boardCurrentSizeDescription, TerminalColors::PINK)
-         << " Enter coords x, y with a space (ex: 0 4) :"
-         << endl << "> ";
+    tmp += getColoredStr(boardCurrentSizeDescription, TerminalColors::PINK);
+    tmp += "Enter coords x, y with a space (ex: 0 4) : \n\r";
+    tmp += "> ";
+
+    cout << tmp;
 
     showTerminalCursor();
     int xOffset = 0, yOffset = 0;
